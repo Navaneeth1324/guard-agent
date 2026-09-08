@@ -1,5 +1,10 @@
 # 🛡️ GuardAgent: Parameter-Efficient, Low-Latency Runtime GuardAgent for Tool-Using LLM Agents via Adaptive Human Oversight
 
+<p align="center">
+  <img src="assets/banner.jpg" alt="GuardAgent Banner" width="100%" />
+</p>
+
+
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
