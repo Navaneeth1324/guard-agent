@@ -1,0 +1,2 @@
+# Standard library only (no external dependencies required for MCP server!)
+# Optional: requests, fastapi, uvicorn

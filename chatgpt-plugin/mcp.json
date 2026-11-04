@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "guardagent-safety": {
+      "type": "sse",
+      "url": "http://localhost:8765/sse"
+    }
+  }
+}

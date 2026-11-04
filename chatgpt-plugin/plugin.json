@@ -1,0 +1,23 @@
+{
+  "name": "GuardAgent",
+  "version": "1.0.0",
+  "description": "Pre-Execution Guardrails for LLM Tools powered by Mistral-7B QLoRA 4-bit SLM Reasoner over Model Context Protocol (MCP).",
+  "developer": "Navaneeth Tanuboddi",
+  "homepage": "https://github.com/Navaneeth-Tanuboddi/GuardAgent",
+  "model_architecture": {
+    "base_model": "Mistral-7B-Instruct-v0.3",
+    "quantization": "4-bit NormalFloat (NF4)",
+    "fine_tuning": "QLoRA (Rank=16, Alpha=32)",
+    "training_corpus": "AgentHarm (ICLR 2025) & ToolSword (ACL 2024)",
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
+    "trainable_parameters": "41.9M (1.10% total weights)",
+    "inference_latency": "138 ms (P95 on Tesla T4)",
+    "macro_f1": "95.2%"
+  },
+  "safety_gateway": {
+    "protocol": "Model Context Protocol (MCP) JSON-RPC 2.0",
+    "default_endpoint": "http://localhost:8765/sse",
+    "threshold": 0.70,
+    "actions": ["ALLOW", "REVIEW", "BLOCK"]
+  }
+}
