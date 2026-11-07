@@ -34,6 +34,10 @@ Traditional AI guardrails (like Llama Guard or NeMo) inspect prompt text upfront
 
 ## 🏗️ End-to-End System Architecture
 
+<p align="center">
+  <img src="assets/architecture_diagram.png" alt="GuardAgent End-to-End Architecture Diagram" width="100%" />
+</p>
+
 ```
         ┌─────────────┐   (Direct connection BLOCKED)   ┌─────────────┐
         │     FE      │  ─────── // // // ───────>     │     AI      │ ──> Operations
@@ -95,12 +99,14 @@ guard-agent/
 │   └── serve_dashboard.py     # Multi-threaded HTTP daemon
 │
 ├── docs/                      # Technical Documentation & Capstone Deliverables
+│   ├── GuardAgent_ESA_Presentation_Final.pptx        # Official 12-slide PES University ESA Final Presentation Deck
+│   ├── Pre_Execution_Guardrails_Capstone_Phase1_Report.docx # Official Phase-1 Capstone Dissertation Report (Word)
+│   ├── Pre_Execution_Guardrails_Capstone_Phase1_Report.pdf  # Printable Phase-1 Dissertation Report (PDF)
 │   ├── GuardAgent_Technical_Specification.md   # Complete system architecture spec
 │   ├── GuardAgent_Technical_Specification.pdf  # Formal printable PDF specification
 │   ├── GuardAgent_Demo_Runbook.md              # 4-step live presentation runbook
 │   ├── GuardAgent_Phase2_PPT_Guide_and_Viva_Prep.md  # Slide scripts & 20 Master Viva Q&As
 │   ├── GuardAgent_Phase2_PPT_Guide_and_Viva_Prep.pdf  # Printable Viva prep manual
-│   ├── Pre_Execution_Guardrails_Review2_Final.pptx   # Official 13-slide PES review deck
 │   └── Gantt_Chart_Calendar_Format.png         # Phase-1 & Phase-2 project roadmap
 │
 └── src/                       # Interactive Next.js Research Sandbox & Benchmark UI
@@ -181,12 +187,36 @@ Tested against **1,000 real-world tool execution scenarios** from AgentHarm and 
 
 ---
 
+## 🌐 Applicability Across 3 Critical Domains
+
+GuardAgent is designed to secure high-hazard tool execution across real-world enterprise verticals:
+
+### 1. Cloud & DevOps Infrastructure Security
+* **Context**: Autonomous software engineering agents (*Cursor, Copilot, Codex, AWS bots*) executing `shell_exec`, `aws.delete_volume`, and `kubectl_apply`.
+* **Threat Vectors**: Hallucinated resource deletions (e.g., the *PocketOS AWS volume wipeout*), recursive filesystem wiping (`rm -rf /`), or prompt injection backdoors via untrusted pull request diffs.
+* **GuardAgent Defense**: Tier-1 AST regex intercepts destructive tokens in $< 0.1\text{ ms}$; Tier-2 Mistral-7B QLoRA assesses operational blast radius. Enforces a 100% fail-closed guarantee with immutable SOC-2 audit logs.
+
+### 2. Healthcare & Electronic Health Records (EHR) Safety
+* **Context**: Clinical AI co-pilots and diagnostic assistants invoking `query_patient_records`, `update_dosage`, and FHIR/HL7 database APIs.
+* **Threat Vectors**: Mass Protected Health Information (PHI) exfiltration via indirect prompt injection, unverified prescription dosage tampering (`UPDATE prescriptions SET dose = 1000mg`), and HIPAA Security Rule § 164.312 non-compliance.
+* **GuardAgent Defense**: Automatic pre-execution PII masking; clinical safety boundary verification; mandatory human-in-the-loop escalation (`REVIEW` tier) requiring attending physician sign-off on any medical record modification.
+
+### 3. Financial Services & Automated Banking Protection
+* **Context**: Automated wealth management agents, customer service banking bots, and algorithmic reconciliation systems executing `initiate_wire_transfer`, `query_account_balance`, and SQL updates.
+* **Threat Vectors**: Prompt injection in transaction memos redirecting funds to attacker accounts, SQL injection balance manipulation (`UPDATE accounts SET balance = balance + 50000`), or bypassing AML structuring limits.
+* **GuardAgent Defense**: Monetary verification blocking arbitrary schema modifications; dynamic transfer threshold collars ($> \$500$ prompts 2FA/teller review); complete RBI/FinCEN non-repudiation audit trails.
+
+---
+
 ## 📄 Documentation & Academic Deliverables
 
+- **Official ESA Presentation Deck (12 Slides)**: [`docs/GuardAgent_ESA_Presentation_Final.pptx`](docs/GuardAgent_ESA_Presentation_Final.pptx)
+- **Capstone Phase-1 Dissertation Report (Word)**: [`docs/Pre_Execution_Guardrails_Capstone_Phase1_Report.docx`](docs/Pre_Execution_Guardrails_Capstone_Phase1_Report.docx)
+- **Capstone Phase-1 Dissertation Report (PDF)**: [`docs/Pre_Execution_Guardrails_Capstone_Phase1_Report.pdf`](docs/Pre_Execution_Guardrails_Capstone_Phase1_Report.pdf)
 - **Technical Specification**: [`docs/GuardAgent_Technical_Specification.md`](docs/GuardAgent_Technical_Specification.md) (or [PDF](docs/GuardAgent_Technical_Specification.pdf))
-- **Phase-2 Review Presentation Deck**: [`docs/Pre_Execution_Guardrails_Review2_Final.pptx`](docs/Pre_Execution_Guardrails_Review2_Final.pptx)
 - **Presentation & Viva Preparation Guide**: [`docs/GuardAgent_Phase2_PPT_Guide_and_Viva_Prep.md`](docs/GuardAgent_Phase2_PPT_Guide_and_Viva_Prep.md) (or [PDF](docs/GuardAgent_Phase2_PPT_Guide_and_Viva_Prep.pdf))
 - **Live Demo Runbook**: [`docs/GuardAgent_Demo_Runbook.md`](docs/GuardAgent_Demo_Runbook.md)
+- **Project Roadmap & Gantt Chart**: [`docs/Gantt_Chart_Calendar_Format.png`](docs/Gantt_Chart_Calendar_Format.png)
 
 ---
 
